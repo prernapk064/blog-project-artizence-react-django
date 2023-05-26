@@ -1,70 +1,31 @@
-# Getting Started with Create React App
+Blog frontend using react
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Here I have created four endpoints -
 
-## Available Scripts
+/: The root endpoint of the application.it displays the main blog page along with sign-in and registers icons.
 
-In the project directory, you can run:
+/register: The registration endpoint where users can register themselves.Here I am using the API http://127.0.0.1:8000/api/users/ to register users. After successful registration, the user is redirected to the login page.
 
-### `npm start`
+/login: The login endpoint where users can provide their username and password to log in. It uses the backend API http://127.0.0.1:8000/api/token/ to generate a JWT token for authentication. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+/blog/:id: The blog endpoint that displays a particular blog. It fetches the data using the API http://127.0.0.1:8000/api/blogs/${id}/, where ${id} represents the unique identifier of the blog
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+first, when we hit the URL http://localhost:3000, it will show you the blog,signin, and register icon.
 
-### `npm test`
+key feature - without sign-in and authentication we can not see the blog.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Users can register themselves by clicking on the register and providing the required details. It uses the /register endpoint and the API http://127.0.0.1:8000/api/users/.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+After successful registration, users are redirected to the login page. Here, they need to provide their username and password. It uses the /login endpoint and the API http://127.0.0.1:8000/api/token/ to generate a JWT token for authentication.
 
-### `npm run eject`
+Once a user logs in, their identity is verified using JWT authentication. The generated token is stored in the local storage, allowing the user to stay logged in even after refreshing the page or revisiting the website without logging in again. The token is automatically refreshed every four minutes to maintain the session.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+If the user clicks logout then they have to login again.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The frontend continuously fetches blog data from the backend using the API http://127.0.0.1:8000/api/blogs/. This ensures that any changes made to the blog content (such as CRUD operations) are immediately reflected in the frontend.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Users can read a specific blog by clicking the "Read More" button. This action navigates them to the particular blog page, which retrieves the relevant data using the API http://127.0.0.1:8000/api/blogs/${id}/, where ${id} represents the unique identifier of the blog.
